@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'chandori/css/design.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chandori/css/nav.css' %}">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        a{text-decoration: none;}
+        a:link {text-decoration: none; color: rgb(53, 48, 48);}
+        a:visited {text-decoration: none; color: rgb(53, 48, 48);}
+        a:active {text-decoration: none; color: grey;}
+        a:hover {text-decoration: none; color: gray;}
+    </style>
+</head>
+<body>
+    
+    <div class="login">
+        <a href="#">로그인 </a>
+        <a >|</a>
+        <a href="#">회원가입</a>
+    </div>
+    <div class="banner">
+        <div>
+            <img src="{% static 'chandori//img/그림1.png' %}" alt="" style="width: 100%; position: absolute; height: 150px; z-index: 1;">
+            <img src="{% static 'chandori//img/그림2.png' %}" alt="" style="width: 100%; position: absolute; height: 150px; top: 480px; z-index: 2;">
+            <div class="img1"></div>    
+        </div>
+        
+        <p class="logo">짠돌이</p>
+        <p class="sub_logo">-절약 가계부 서비스-</p>
+        <div class="text">
+            <pre style="font-family: 'jua';">
+짠
+내
+나
+는
+
+우
+리
+들
+의
+            </pre>
+        </div>
+        
+        <div class="text2" >
+            <pre style="font-family: 'jua';">
+                지
+                갑
+                지
+                키
+                기
+        
+                프
+                로
+                젝
+                트
+            </pre>
+        </div>
+    </div>
+
+    <nav>
+        <a href="./main.html" class="is-current">가계부</a>
+        <a href="./second.html">지출 분석</a>
+        <a href="#" >커뮤니티</a>
+        <a href="./edit.html">정보 수정</a>
+        <div class="nav-underline"></div>
+    </nav>
+
+    <div class="bottom">
+        <img src="./img/bot_fin.png" alt="" width="100%" >
+        <div>
+            <div class="bottom-left">
+                <br>
+                &nbsp
+                <div class="footer-icon">
+                    <img src="./img/ledger.png" alt="" width="130px">
+                </div>
+                
+                <div class="footer-title">
+                    <span>짠돌이 <br> </span>
+                    <span style="font-size: 20px;">-절약 가계부 서비스-</span>
+                </div>
+
+                <div class="footers">
+                    <span onclick="location.href='#'">&nbsp 회사소개</span> |
+                    <span onclick="location.href='#'">인사채용</span> |
+                    <span onclick="location.href='#'">제휴제안</span> |
+                    <span onclick="location.href='#'">이용약관</span> |
+                    <span onclick="location.href='#'">개인정보처리방침</span> |
+                    <span onclick="location.href='#'">청소년보호정책</span> |
+                    <span onclick="location.href='#'">고객센터</span>
+                </div>
+                <div class="bottom-right">
+                    Copyright ⓒ LLkmu Corp. All Rights Reserved. &nbsp
+                </div>
+                
+                
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
