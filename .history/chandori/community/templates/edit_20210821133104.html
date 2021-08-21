@@ -1,0 +1,138 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'chandori/css/design.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chandori/css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'community/css/edits.css' %}">
+    <link rel="stylesheet" href="community/js//combo.js">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        @font-face {
+            font-family: 'hanna2';
+            src: url('font/BMHANNA_11YRS_TTF.TTF') format('truetype');
+        } 
+        @font-face {
+            font-family: 'hanna';
+            src: url('font/BMHANNAPRO.TTF') format('truetype');
+        }   
+        @font-face {
+            font-family: 'jua';
+            src: url('font/BMJUA_ttf.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'DO';
+            src: url('font/BMDOHYEON_ttf.ttf') format('truetype');
+        } 
+        @font-face {
+            font-family: 'air';
+            src: url('font/BMHANNAAIR_TTF.TTF') format('truetype');
+        } 
+        a{text-decoration: none;}
+        a:link {text-decoration: none; color: rgb(53, 48, 48);}
+        a:visited {text-decoration: none; color: rgb(53, 48, 48);}
+        a:active {text-decoration: none; color: grey;}
+        a:hover {text-decoration: none; color: gray;}
+    </style>
+</head>
+<body>
+    <div class="login">
+        <a href="#">로그인 </a>
+        <a >|</a>
+        <a href="#">회원가입</a>
+    </div>
+
+    <div class="logo2">짠돌이</div>
+
+    <nav style="top: 100px;">
+        <a href="{% url 'accounting:home' %}">가계부</a>
+        <a href="#">질문게시판</a>
+        <a href="#" >정보게시판</a>
+        <a href="{% url 'community:edit' %}" class="is-current">정보 수정</a>
+        <div class="nav-underline"></div>
+    </nav>
+
+    
+    
+
+    <div class="bottom_edit">
+        <img src="{% static 'chandori//img/bot_fin.png' %}" alt="" width="100%" >
+        <div>
+            <div class="bottom-left">
+                <br>
+                &nbsp
+                <div class="footer-icon">
+                    <img src="{% static 'chandori//img/ledger.png' %}" alt="" width="130px">
+                </div>
+                
+                <div class="footer-title">
+                    <span>짠돌이 <br> </span>
+                    <span style="font-size: 20px;">-절약 가계부 서비스-</span>
+                </div>
+
+                <div class="footers">
+                    <span onclick="location.href='#'">&nbsp 회사소개</span> |
+                    <span onclick="location.href='#'">인사채용</span> |
+                    <span onclick="location.href='#'">제휴제안</span> |
+                    <span onclick="location.href='#'">이용약관</span> |
+                    <span onclick="location.href='#'">개인정보처리방침</span> |
+                    <span onclick="location.href='#'">청소년보호정책</span> |
+                    <span onclick="location.href='#'">고객센터</span>
+                </div>
+                <div class="bottom-right">
+                    Copyright ⓒ LLkmu Corp. All Rights Reserved. &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<!-- 
+
+{% block content %}
+    <div id="login">
+        <div class="container">
+            <div id="login-row">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-center text-info">회원정보 수정</h3>
+                            <div class="form-group">
+                                <label for="username">닉네임</label>
+                                <input type="text" name="username" id="input1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">비밀번호</label>
+                                <input type="text" name="password" id="input2" class="form-control">
+                            </div>
+                            <div class="form-group2">
+                                <label for="password">계좌수정</label>
+                                <input type="text" name="password" id="input3" class="form-control">
+                                &nbsp;&nbsp;
+                                
+                                <select name="account" class="select-arrow-image" >
+                                    <option value="nh">&nbspNH농협은행</option>
+                                    <option value="sin">&nbsp신한은행</option>
+                                    <option value="kb">&nbspKB국민은행</option>
+                                    <option value="hana">&nbsp하나은행</option>
+                                </select>
+                            </div>
+                            
+                        </form>
+                        <br><button type="submit">수정완료</button><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} -->

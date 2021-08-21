@@ -1,0 +1,12 @@
+{% include 'header.html' %}
+
+{% block content %}
+<nav style="top: 100px;">
+    <a href="{% url 'accounting:home' %}">가계부</a>
+    <a href="{% url 'board_info:board' %}" class="is-current">질문게시판</a>
+    <a href="#" >정보게시판</a>
+    <a href="{% url 'community:edit' %}" >정보 수정</a>
+    <div class="nav-underline"></div>
+</nav>
+{% include 'footer.html' %}
+{% endblock %}
