@@ -1,4 +1,4 @@
 from django.shortcuts import render, redirect
 
-def board(request):
+def community(request):
     return render(request, "board.html")

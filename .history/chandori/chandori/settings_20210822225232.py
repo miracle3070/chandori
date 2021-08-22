@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounting.apps.AccountingConfig',
-    'community',
+    'community.apps.CommunityConfig',
+    'board_info',
+    'board_q',
     'account',
 ]
 
