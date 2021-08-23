@@ -43,9 +43,15 @@
 </head>
 <body>
     <div class="login">
-        <a href="#">로그인 </a>
-        <a >|</a>
-        <a href="#">회원가입</a>
+        {% if user.is_authenticated %}
+            <label>{{user.username}}님 환영합니다!</label>
+            <a href="{% url 'account:logout' %}">로그아웃</a>
+        {% else%}
+            <a href="{% url 'account:login' %}">로그인 </a>
+            <a >|</a>
+            <a href="{% url 'account:signup' %}">회원가입</a>
+
+        {% endif %}
     </div>
 
     <div class="logo2">짠돌이</div>
