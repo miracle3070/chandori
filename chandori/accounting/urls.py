@@ -5,4 +5,5 @@ app_name = 'accounting'
 
 urlpatterns = [
     path('', accounting.views.home, name="home"),
+    path('field/', accounting.views.field, name="field"),
 ]
