@@ -24,9 +24,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="age">연령대</label>
-                                
-                                <select name="age" class="select-arrow-image">
-                                    <option value="" selected disabled hidden>{{ user.age }}대</option>
+                                <h4>{{ user.age }}대</h4>
+                                <select name="age" class="select-arrow-image" form="">
                                     <option value="10">10대</option>
                                     <option value="20">20대</option>
                                     <option value="30">30대</option>
@@ -39,28 +38,28 @@
                                 &nbsp;&nbsp;
 
                                 <select name="job" class="select-arrow-image">
-                                    <option value="" selected disabled hidden>{{ user.job }}</option>
-                                    <option value="학생">학생</option>
-                                    <option value="대학생/취준생">대학생/취준생</option>
-                                    <option value="직장인">직장인</option>
+                                    <option value="student">학생</option>
+                                    <option value="univ_student">대학생/취준생</option>
+                                    <option value="worker">직장인</option>
                                 </select>
                             </div>
                             <div class="form-group" >
-                                <label for="income">연봉</label>
+                                <label for="income">연령대</label>
                                 <select name="income" class="select-arrow-image">
-                                    <option value="" selected disabled hidden>{{ user.income }}만원</option>
                                     <option value="10">10만원 이하</option>
                                     <option value="50">50만원 이하</option>
                                     <option value="100">100만원 이하</option>
                                     <option value="150">150만원 이상</option>
                                 </select>
                             </div>
-         
-                            <!-- <input type="submit" value="수정완료"> -->
-                            <br><button type="submit">수정완료</button><br>
+ 
+
+                               
+                            <input type="submit" value="수정완료">
+                            
                             
                         </form>
-                        
+                        <br><button type="submit">수정완료</button><br>
                         
                     </div>
                 </div>

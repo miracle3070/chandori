@@ -3,29 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserChangeForm
 from django.utils import timezone
 from .models import *
-from .forms import CustomUserChangeForm
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def edit(request):
-    if request.method == 'GET':
-        return render(request, 'edit.html')
-    elif request.method == 'POST':
-        user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
-        user_change_form.nickname = request.POST.get('nickname')
-        user_change_form.age = int(request.POST.get('age'))
-        user_change_form.job = request.POST.get('job')
-        user_change_form.income = int(request.POST.get('income'))
-        user_change_form.save()
-        messages.success(request, '회원정보가 수정되었습니다.')
-        return render(request, 'edit.html')
-        # if user_change_form.is_valid():
-            
-    # else:
-    #     user_change_form = CustomUserChangeForm(instance = request.user)
-
-    #     return render(request, 'edit.html', {'user_change_form':user_change_form})
+    user_change_form = UserChangeForm(instance = request.user)
+    return render(request, "edit.html", {'user_change_form':user_change_form})
 
 
 def login_view(request):
@@ -77,4 +58,6 @@ def signup_view(request):
 
     return render(request, "signup.html", {"error_msg" : error_msg})
 
-   
+
+def update(request):
+    

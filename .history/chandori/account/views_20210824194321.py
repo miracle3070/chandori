@@ -14,9 +14,9 @@ def edit(request):
     elif request.method == 'POST':
         user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
         user_change_form.nickname = request.POST.get('nickname')
-        user_change_form.age = int(request.POST.get('age'))
+        user_change_form.age = request.POST.get('age')
         user_change_form.job = request.POST.get('job')
-        user_change_form.income = int(request.POST.get('income'))
+        user_change_form.income = request.POST.get('income')
         user_change_form.save()
         messages.success(request, '회원정보가 수정되었습니다.')
         return render(request, 'edit.html')

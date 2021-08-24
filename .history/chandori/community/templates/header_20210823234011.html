@@ -44,7 +44,7 @@
 <body>
     <div class="login">
         {% if user.is_authenticated %}
-            <label>{{user.nickname}}님 환영합니다!</label>
+            <label>{{user.username}}님 환영합니다!</label>
             <a href="{% url 'account:logout' %}">로그아웃</a>
         {% else%}
             <a href="{% url 'account:login' %}">로그인 </a>

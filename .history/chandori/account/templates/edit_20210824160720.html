@@ -1,0 +1,52 @@
+{% include 'community/templates/header.html' %}
+
+{% block content %}
+
+    <nav style="top: 100px;">
+        <a href="{% url 'accounting:home' %}">가계부</a>
+        <a href="{% url 'community:board' %}">질문게시판</a>
+        <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
+        <div class="nav-underline"></div>
+    </nav>
+
+    <div id="login">
+        <div class="container">
+            <div id="login-row">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-center text-info">회원정보 수정</h3>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">닉네임</label>
+                                <input type="text" name="username" id="input1" class="form-control">
+                                {{ CustomUser.nickname }}
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="password">비밀번호</label>
+                                <input type="text" name="password" id="input2" class="form-control">
+                            </div>
+                            <div class="form-group2">
+                                <label for="password">계좌수정</label>
+                                <input type="text" name="password" id="input3" class="form-control">
+                                &nbsp;&nbsp;
+                                
+                                <select name="account" class="select-arrow-image" >
+                                    <option value="nh">&nbspNH농협은행</option>
+                                    <option value="sin">&nbsp신한은행</option>
+                                    <option value="kb">&nbspKB국민은행</option>
+                                    <option value="hana">&nbsp하나은행</option>
+                                </select>
+                            </div> -->
+                            
+                            
+                            
+                        </form>
+                        <br><button type="submit">수정완료</button><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'community/templates/footer.html' %}
+{% endblock %}
