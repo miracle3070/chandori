@@ -36,9 +36,11 @@
     </div>
 
     <div class="account-field">
-        <form action="#" method="POST">
+        <form action="{% url 'accounting:field' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{ user.id }}" name="user">
             <div>
-                <input id="account-date" type="date">
+                <input id="account-date" type="date" name="date">
             </div>
             <ul class="field">
                 <!-- 여기에 가계부 입력칸이 동적으로 생성됨. -->

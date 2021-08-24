@@ -110,7 +110,7 @@ const addAccountField = () => {
             <option value="기타">기타</option>
         </select>
         <input class="field-money list-style" name="money${fieldCount}" type="text" placeholder="금액 입력">
-        <select class="field-bank list-style" name="bank${fieldCount}">
+        <select class="field-bank list-style" name="bank_account${fieldCount}">
             <option value="현금">현금</option>
             <option value="농협은행">농협은행</option>
             <option value="신한은행">신한은행</option>
