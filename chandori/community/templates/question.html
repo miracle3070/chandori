@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[짠돌이] 질문게시판</title>
+</head>
+<body>
+    <div id="big_box">
+        <div id="side_left"><br>
+            <div id="side_content">
+            <button id="make_content" type="button" onclick="location.href='/write/'">글 작성하기</button>
+            </div>
+            <br><br> <br>커뮤니티<br><br>
+            <div id="side_content">· <a href="/inform">정보게시판</a><br></div><br>
+            <div id="side_content">· <a href="/question">질문게시판</a><br></div><br>
+            <hr><br>
+            <div id="side_content"> <a href>내가 작성한 글</a><br></div><br>
+        </div>
+        <div id="comm_main">
+            <br>질문게시판<br><br>
+            list
+        </div>
+</body>
+</html>

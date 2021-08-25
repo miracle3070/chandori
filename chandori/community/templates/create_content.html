@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[짠돌이] 글 작성하기</title>
+    <style>
+        body{text-align: left;}
+    </style>
+</head>
+<body>
+    <form action="{%url 'create' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>제목 <input type="text" name="title"/></p>
+        <p>작성자 <input type="text" name="writer"></p>
+        내용<br><textarea name="body" id="" cols="30" rows="10"></textarea>
+        <p><input type="submit" value="작성"/></p>
+    </form>
+</body>
+</html>
