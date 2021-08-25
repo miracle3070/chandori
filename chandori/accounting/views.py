@@ -16,7 +16,7 @@ def field(request):
         recv_data = request.POST.keys()
         temp1 = " ".join(recv_data)
         moneys = p.findall(temp1)
-        print(moneys)
+        #print(moneys)
 
         # 금액이 비어있는 거래내역은 삭제
         for m in moneys[:]:
@@ -29,10 +29,9 @@ def field(request):
             num = moneys[i][5:]
             numbers.append(num)
 
-        print(numbers)
+        #print(numbers)
 
         for n in numbers:
-            print(request.POST.keys())
             user_id = request.POST["user"]
             user = CustomUser.objects.get(pk=user_id)
             bank_account = request.POST["bank_account" + n]
@@ -58,7 +57,7 @@ def field(request):
             )
 
             transaction_info.save()
-            return redirect("accounting:home")
+        return redirect("accounting:home")
 
 
     return render(request, "account-field.html")
