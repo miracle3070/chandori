@@ -13,5 +13,6 @@ class Blog(models.Model):
     def summary(self):
         return self.body[:50]
 
-class Post(models.Model):
-    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like=posts", blank= True)
+
+# class Post(models.Model):
+#     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like=posts", blank= True)

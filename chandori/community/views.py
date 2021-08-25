@@ -1,3 +1,5 @@
+from django.db import models
+from django.db.models.base import Model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Blog
@@ -19,7 +21,7 @@ def create(request):
         new_blog.writer = request.POST['writer']
         new_blog.body = request.POST['body']
         new_blog.pub_date = timezone.now()
-        # new_blog.save()
+        new_blog.save()
     return redirect('community')
     # return render(request, 'create_content.html')
 
