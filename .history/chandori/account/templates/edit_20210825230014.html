@@ -56,15 +56,14 @@
                                     <option value="150">150만원 이상</option>
                                 </select>
                             </div>
-                            
+
                             <br><a class="text-center text-info" href="{% url 'account:edit_bank' %}" style="font-size: 20px;">계좌 추가하기</a>
-                            
-                            <br><button type="submit">수정완료</button><br>
-                            {% for bankform in bankforms %}
-                            <h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
+                            {% for account in add_Account %}
+                            {{account.bank}} {{account.account_num}} <br> {{account.balance}}
                             {% endfor %}
+                            <br><button type="submit">수정완료</button><br>
+                            
                         </form>
-                        
                         
                         
                     </div>

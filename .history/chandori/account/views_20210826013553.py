@@ -20,7 +20,7 @@ def edit(request):
         user_change_form.income = int(request.POST.get('income'))
         user_change_form.save()
         
-        bankforms = BankAccount.objects.filter(name = user_change_form.nickname)
+        bankforms = BankAccount.objects.filter(nickname = CustomUser.nickname)
         messages.success(request, '회원정보가 수정되었습니다.')
         return render(request, 'edit.html', {'bankforms':bankforms})
        
@@ -29,7 +29,7 @@ def edit_bank(request):
         return render(request, 'add_Account.html')
     elif request.method == 'POST':
         add_Account = BankAccount()
-        add_Account.name = request.POST.get('name')
+        
         # add_Account.user = CustomUser.objects.filter(id=user_id)
         add_Account.account_num = request.POST.get('account_num')
         add_Account.bank = request.POST.get('bank')

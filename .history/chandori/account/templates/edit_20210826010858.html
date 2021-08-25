@@ -57,14 +57,13 @@
                                 </select>
                             </div>
                             
+                            <h5>{{add_Account.bank}} {{add_Account.account_num}}</h5> <br> {{add_Account.balance}}
+                            
                             <br><a class="text-center text-info" href="{% url 'account:edit_bank' %}" style="font-size: 20px;">계좌 추가하기</a>
                             
                             <br><button type="submit">수정완료</button><br>
-                            {% for bankform in bankforms %}
-                            <h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
-                            {% endfor %}
+                            
                         </form>
-                        
                         
                         
                     </div>

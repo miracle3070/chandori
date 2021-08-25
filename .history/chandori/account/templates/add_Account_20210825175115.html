@@ -1,0 +1,24 @@
+{% include 'community/templates/header.html' %}
+
+{% block content %}
+
+
+<nav style="top: 100px;">
+    <a href="{% url 'accounting:home' %}">가계부</a>
+    <a href="{% url 'community:board' %}">질문게시판</a>
+    <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
+    <div class="nav-underline"></div>
+</nav>
+<br>
+<form action="{% url 'account:login' %}" method="POST">
+    {% csrf_token %}
+    <label>로그인 <input type="text" name="username"></label>
+    <label>비밀번호 <input type="password" name="password"></label>
+    <input type="submit" value="로그인">
+</form>
+
+<p>{{error_msg}}</p>
+
+
+{% include 'community/templates/footer.html' %}
+{% endblock %}

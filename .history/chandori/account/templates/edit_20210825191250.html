@@ -16,7 +16,7 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="{% url 'account:edit' %}" method="POST">
                             <h3 class="text-center text-info">회원정보 수정</h3>
-                            
+                            <a class="text-center text-info" href="{% url 'account:edit_bank' %}">계좌 추가하기</a>
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="nickname">닉네임</label>
@@ -56,15 +56,11 @@
                                     <option value="150">150만원 이상</option>
                                 </select>
                             </div>
-                            
-                            <br><a class="text-center text-info" href="{% url 'account:edit_bank' %}" style="font-size: 20px;">계좌 추가하기</a>
-                            
+         
+                            <!-- <input type="submit" value="수정완료"> -->
                             <br><button type="submit">수정완료</button><br>
-                            {% for bankform in bankforms %}
-                            <h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
-                            {% endfor %}
+                            
                         </form>
-                        
                         
                         
                     </div>

@@ -23,7 +23,7 @@ body {
   }
 
   .form{
-      width: 350px;
+      width: 300px;
   }
   .form > div{
       display: flex;
@@ -92,7 +92,7 @@ body {
     border-right: none;
     border-bottom: 2px solid;
     outline: none;
-    width: 14rem;
+    width: 15rem;
   }
   #input7{
     border-color: black;
@@ -101,7 +101,7 @@ body {
     border-right: none;
     border-bottom: 2px solid;
     outline: none;
-    width: 12rem;
+    width: 15rem;
   }
 
   #login .container #login-row #login-column #login-box #login-form {
