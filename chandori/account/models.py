@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -11,10 +11,8 @@ class CustomUser(AbstractUser):
     signup_date = models.DateTimeField(null=True)
 
 
-class BankAccount(AbstractUser):
-    custom_id = models.ForeignKey(CustomUser, related_name="customuserBank", on_delete=models.CASCADE, db_column="custom_id")
-    account_num = models.IntegerField(null=True)
+class BankAccount(models.Model):
+    user = models.ForeignKey(CustomUser, related_name="bankAccount", on_delete=models.CASCADE, db_column="user")
+    account_num = models.CharField(max_length=30)
     bank = models.CharField(max_length=20)
     balance = models.IntegerField(null=True)
-    # USERNAME_FIELD = 'bank'
-    # REQUIRED_FIELDS = ['account_num']
