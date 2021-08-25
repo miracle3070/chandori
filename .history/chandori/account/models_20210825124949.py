@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
 
 
 class BankAccount(AbstractUser):
-    custom_id = models.ForeignKey(CustomUser, related_name="customuserBank", on_delete=models.CASCADE, db_column="custom_id")
+    custom_id = models.ForeignKey("CustomUser", related_name="customuserBank", on_delete=models.CASCADE, db_column="custom_id")
     account_num = models.IntegerField(null=True)
     bank = models.CharField(max_length=20)
     balance = models.IntegerField(null=True)

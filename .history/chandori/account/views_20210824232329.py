@@ -21,8 +21,8 @@ def edit(request):
         messages.success(request, '회원정보가 수정되었습니다.')
         return render(request, 'edit.html')
        
-# def edit_bank(request):
-#     if request.method == 'POST':
+def edit_bank(request):
+    if request.method == 'POST':
 
 def login_view(request):
     error_msg = ""
