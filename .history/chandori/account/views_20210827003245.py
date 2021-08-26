@@ -35,7 +35,7 @@ def edit_bank(request):
     
     bankforms = BankAccount.objects.filter(name = user_change_form.nickname)
     if request.method == 'GET':
-        return render(request, 'add_Account.html', {'bankforms':bankforms})
+        return render('add_Account.html', {'bankforms':bankforms}, context_instance=RequestContext(request))
     elif request.method == 'POST':
         add_Account.save()
         return render(request, 'add_Account.html', {'bankforms':bankforms})
@@ -52,7 +52,7 @@ def edit_bank(request):
 
 def bank_delete(request, BankAccount_id):
     get_object_or_404(BankAccount, pk=BankAccount_id).delete()
-    return render(request, 'edit.html')
+    return redirect('/add_Account/')
 
 def login_view(request):
     error_msg = ""

@@ -52,7 +52,7 @@ def edit_bank(request):
 
 def bank_delete(request, BankAccount_id):
     get_object_or_404(BankAccount, pk=BankAccount_id).delete()
-    return render(request, 'edit.html')
+    return redirect('/add_Account/')
 
 def login_view(request):
     error_msg = ""

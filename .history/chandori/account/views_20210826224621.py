@@ -15,7 +15,7 @@ def edit(request):
     user_change_form.age = request.POST.get('age')
     user_change_form.job = request.POST.get('job')
     user_change_form.income = request.POST.get('income')
-    bankforms = BankAccount.objects.filter(name = user_change_form.nickname)
+    bankforms = BankAccount.objects.filter(name = CustomUser.nickname)
     if request.method == 'GET':
         return render(request, 'edit.html', {'bankforms':bankforms})
     elif request.method == 'POST':
@@ -26,33 +26,20 @@ def edit(request):
        
 def edit_bank(request):
     add_Account = BankAccount()
-    user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
-    add_Account.name = request.POST.get('name')
-    user_change_form.nickname = request.POST.get('name')
-    add_Account.account_num = request.POST.get('account_num')
-    add_Account.bank = request.POST.get('bank')
-    add_Account.balance = request.POST.get('balance')
     
-    bankforms = BankAccount.objects.filter(name = user_change_form.nickname)
     if request.method == 'GET':
-        return render(request, 'add_Account.html', {'bankforms':bankforms})
+        return render(request, 'add_Account.html')
     elif request.method == 'POST':
+        add_Account.name = request.POST.get('name')
+        add_Account.account_num = request.POST.get('account_num')
+        add_Account.bank = request.POST.get('bank')
+        add_Account.balance = request.POST.get('balance')
         add_Account.save()
-        return render(request, 'add_Account.html', {'bankforms':bankforms})
-    return render(request, 'add_Account.html', {'bankforms':bankforms})
-
-# def bank_detail(request, CustomUser_id):
-#     # add_Account = BankAccount()
-#     # add_Account.name = request.POST.get('name')
-#     # user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
-#     # user_change_form.nickname = request.POST.get('name')
-#     # bankforms = BankAccount.objects.filter(name = user_change_form.nickname)
-#     custom = get_object_or_404(BankAccount, id=CustomUser_id)
-#     return render(request, 'Account_detail.html', {'custom':custom})
+        return render(request, 'edit.html', {'add_Account':add_Account})
 
 def bank_delete(request, BankAccount_id):
     get_object_or_404(BankAccount, pk=BankAccount_id).delete()
-    return render(request, 'edit.html')
+    return redirect('/add_Account/')
 
 def login_view(request):
     error_msg = ""

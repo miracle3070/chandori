@@ -1,4 +1,4 @@
-{% include 'header.html' %}
+{% include 'community/templates/header.html' %}
 
 {% block content %}
 
@@ -8,10 +8,6 @@
         <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
         <div class="nav-underline"></div>
     </nav>
-    
-        
-    
-    
 
     <div id="login">
         <div class="container">
@@ -64,20 +60,15 @@
                             <br><a class="text-center text-info" href="{% url 'account:edit_bank' %}" style="font-size: 20px;">계좌 추가하기</a>
                             
                             <br><button type="submit">수정완료</button><br>
-
-                            <input type="submit" id="" value="계좌확인하기">
-                            {% csrf_token %}
-                            {% for bankform in bankforms %}
-                            <h6>{{bankform.bank}} {{bankform.account_num}} <a href="{% url 'account:delete' bankform.id %}">삭제하기</a> <br> 잔액:{{bankform.balance}}</h6>  
-                            {% endfor %}
+                            
                         </form>
+                        {% for bankform in bankforms %}
+                            <h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
+                            {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-
-    {% include 'footer.html' %}
+    {% include 'community/templates/footer.html' %}
 {% endblock %}

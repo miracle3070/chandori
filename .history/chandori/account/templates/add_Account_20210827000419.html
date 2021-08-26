@@ -8,6 +8,8 @@
     <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
     <div class="nav-underline"></div>
 </nav>
+
+
 <div id="login">
     <div class="container">
         <div id="login-row">
@@ -45,14 +47,24 @@
 
                         <br><button type="submit">계좌추가</button><br>
                         
+                        
                     </form>
-                    
+                    <form action="{% url 'account:edit_bank' %}">
+                        {% csrf_token %}
+
+                        {% for bankform in bankforms %}
+                        <h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
+                        {% endfor %}
+                        <br><button type="submit">계좌확인</button><br>
+                    </form>
                     
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <p>{{error_msg}}</p>
 
 

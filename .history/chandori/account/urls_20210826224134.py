@@ -10,5 +10,5 @@ urlpatterns = [
     path('login/', account.views.login_view, name="login"),
     path('logout/', account.views.logout_view, name="logout"),
     path('signup/', account.views.signup_view, name="signup"),
-    # path('detail/<int:BankAcount.id>/', account.views.bank_detail, name="detail"),
+    
 ]
