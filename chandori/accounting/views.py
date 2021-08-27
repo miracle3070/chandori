@@ -64,4 +64,11 @@ def field(request):
     # method가 GET 방식일 경우
     today = DateFormat(datetime.now()).format("Y-m-d")
     trans = list(TestInfoModel.objects.filter(user=request.user.pk, date=today))
-    return render(request, "account-field.html", {"trans" : trans})
+    return render(request, "account-field.html", {"trans" : trans, "dateString": 0})
+
+
+def setField(request, date):
+    print("안녕하세요!")
+    print(date)
+    trans = list(TestInfoModel.objects.filter(user=request.user.pk, date=date))
+    return render(request, "account-field.html", {"trans" : trans, "dateString" : date})

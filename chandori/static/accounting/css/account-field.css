@@ -13,6 +13,14 @@ body {
     min-height: 100vh;
 }
 
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
 .calendar {
     width: 850px;
     margin: 50px;

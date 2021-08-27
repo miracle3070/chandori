@@ -51,7 +51,8 @@
     </div>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="{% static 'accounting/js/account-field.js' %}"></script>
     <script>
         let fieldCount = 0;
@@ -101,6 +102,11 @@
         initAccountField();
         for (let i=fieldCount; i < 5; i++){
             addAccountField();
+        }
+
+        if ({{dateString}} !== 0){
+            modifyCalendar("{{dateString}}");
+            setAccountFieldDate(date.getFullYear(), date.getMonth()+1, date.getDate());
         }
 
     </script>
