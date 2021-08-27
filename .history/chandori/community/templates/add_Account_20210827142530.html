@@ -1,0 +1,93 @@
+{% include 'header.html' %}
+
+{% block content %}
+
+<nav style="top: 100px;">
+    <a href="{% url 'accounting:home' %}">가계부</a>
+    <a href="{% url 'community:board' %}">질문게시판</a>
+    <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
+    <div class="nav-underline"></div>
+</nav>
+
+
+<div id="login">
+    <div class="container">
+        <div id="login-row">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="{% url 'account:edit_bank' %}" method="POST">
+                        <h3 class="text-center text-info">계좌 추가하기</h3>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">계좌주</label>
+                            <input type="text" name="name" id="input1" class="form-control" value="{{ user.nickname }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="bank">은행사</label>
+                            <select name="bank" class="select-arrow-image">
+                                <option value="nh">농협은행</option>
+                                <option value="sin">신한은행</option>
+                                <option value="guk">국민은행</option>
+                                <option value="hana">하나은행</option>
+                                <option value="dae">대구은행</option>
+                                <option value="ka">카카오뱅크</option>
+                                <option value="ibk">ibk기업은행</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="account_num">계좌번호</label>
+                            <input type="text" name="account_num" id="input6" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="balance">잔액</label>
+                            <input type="text" name="balance" id="input7" class="form-control">
+                        </div>
+
+                        {% csrf_token %}
+                        {% for bankform in bankforms %}
+                        <div class="form-group">
+                            <label for="bank">은행사</label>
+                            <select name="bank" class="select-arrow-image">
+                                <option value="{{bankform.bank}}" selected hidden>{{bankform.bank}}</option>
+                                <option value="농협은행">농협은행</option>
+                                <option value="신한은행">신한은행</option>
+                                <option value="국민은행">국민은행</option>
+                                <option value="하나은행">하나은행</option>
+                                <option value="대구은행">대구은행</option>
+                                <option value="카카오뱅크">카카오뱅크</option>
+                                <option value="ibk기업은행">ibk기업은행</option>
+                            </select>
+                            <label for="account_num">계좌번호</label>
+                            <input type="text" name="account_num" class="form-control" value="{{bankform.account_num}}">
+                        </div>
+                        <h6>  <a href="{% url 'account:delete' bankform.id %}">삭제하기</a> <br> 
+                            <label for="balance">잔액</label>
+                            <input type="text" name="balance" class="form-control" value="잔액:{{bankform.balance}}">
+                            
+                        </h6>  
+                        {% endfor %}
+
+                        <br><button type="submit">계좌추가</button><br>
+                        <a href="{% url 'account:detail' %}">보유계좌</a>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% csrf_token %}
+
+{% for bankform in bankforms %}
+<h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
+{% endfor %}
+<br><button type="submit">계좌확인</button><br>
+
+<p>{{error_msg}}</p>
+
+
+{% include 'footer.html' %}
+{% endblock %}

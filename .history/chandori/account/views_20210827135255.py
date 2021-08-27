@@ -46,20 +46,18 @@ def edit_bank(request):
         return render(request, 'add_Account.html', {'bankforms':bankforms})
     return render(request, 'add_Account.html', {'bankforms':bankforms})
 
-def bank_detail(request):
+def bank_detail(request, BankAccount_id):
     # add_Account = BankAccount()
     # add_Account.name = request.GET.get('name')
     # user_change_form = CustomUser()
     # user_change_form.nickname = request.GET.get('name')
-    # detail = get_object_or_404(BankAccount, pk=BankAccount_id)
-    detail = BankAccount.objects.all()
+    detail = get_object_or_404(BankAccount, pk=BankAccount.id)
     # bankforms = BankAccount.objects.filter(name = user_change_form.nickname)
     return render(request, 'Account_detail.html', {'detail':detail})
 
 def bank_delete(request, BankAccount_id):
     get_object_or_404(BankAccount, pk=BankAccount_id).delete()
-    detail = BankAccount.objects.all()
-    return render(request, 'Account_detail.html', {'detail':detail})
+    return render(request, 'edit.html')
 
 def login_view(request):
     error_msg = ""

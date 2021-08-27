@@ -58,8 +58,7 @@ def bank_detail(request):
 
 def bank_delete(request, BankAccount_id):
     get_object_or_404(BankAccount, pk=BankAccount_id).delete()
-    detail = BankAccount.objects.all()
-    return render(request, 'Account_detail.html', {'detail':detail})
+    return redirect('/detail/')
 
 def login_view(request):
     error_msg = ""
