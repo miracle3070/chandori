@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'community/css/table.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,12 @@
         <input type="text">        
         <button>검색</button><br><br>
             <div id="inform_prev" style="width: 350px; font-size: 0.9em; font-weight: border;">정보 게시판<br>
-            <div style="font-size: 0.85em; font-weight: lighter; width: 320px;">인기 정보<hr><br>최신 정보<hr></div></div>
+            <div style="font-size: 0.85em; font-weight: lighter; width: 320px;">인기 정보<hr><br>
+                <br>
+                {% for blog in blogs %}
+                    <a href="{% url 'detail' blog.id %}">{{blog.title}} {{blog.writer}}<br>{{blog.summary}}</a><br>
+                {% endfor %}
+                최신 정보<hr></div></div>
             <div id="vertical_line"></div>
             <div id="question_prev" style="font-size: 0.9em; font-weight: border;">질문 게시판</div>
         </div>

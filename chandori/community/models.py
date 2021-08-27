@@ -1,11 +1,17 @@
 from django.db import models
 
 # Create your models here.
+category_select = (
+    ('정보 게시판', '정보 게시판'),
+    ('질문 게시판', '질문 게시판'),
+)
+
 class Blog(models.Model):
     title = models.CharField(max_length=100)
     writer = models.CharField(max_length=20)
     created_date = models.DateTimeField(auto_now_add=True)
-    body = models.TextField()
+    category = models.CharField(max_length=20, choices=category_select, default='정보 게시판')
+    content = models.TextField()
 
     def __str__(self):
         return self.title
@@ -13,6 +19,13 @@ class Blog(models.Model):
     def summary(self):
         return self.body[:50]
 
+class Comment(models.Model):
+    content = models.ForeignKey(Blog, on_delete = models.CASCADE)
+    comment = models.CharField('comment', max_length=200)
+    create_date = models.DateTimeField(auto_now_add=True)
 
-# class Post(models.Model):
-#     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like=posts", blank= True)
+    class Meta:
+        ordering = ['-create_date']
+
+    def __str__(self):
+        return self.comment

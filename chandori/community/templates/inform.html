@@ -18,11 +18,15 @@
             <div id="side_content">· <a href="/inform">정보게시판</a><br></div><br>
             <div id="side_content">· <a href="/question">질문게시판</a><br></div><br>
             <hr><br>
-            <div id="side_content"> <a href>내가 작성한 글</a><br></div><br>
+            <div id="side_content"> <a href="?search=true&writer={{user.username}}">내가 작성한 글</a><br></div><br>
         </div>
         <div id="comm_main">
             <br>정보게시판<br><br>
-            list
+            {% for blog in blogs %}
+
+                <p style="color: black;"><a href="{% url 'detail' blog.id %}">{{blog.title}} </a>{{blog.writer}} {{blog.created_date}}</p>
+
+            {% endfor %}
         </div>
 </body>
 </html>
