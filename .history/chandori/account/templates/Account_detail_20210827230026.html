@@ -14,13 +14,11 @@
 {% for bankform in detail %}
 
 <h3 style="text-align: center;"><br>{{bankform.bank}} {{bankform.account_num}} <a href="{% url 'account:delete' bankform.id %}">삭제하기</a> 
-    <br> 보유액:{{bankform.balance}}
+    <br> 잔액:{{bankform.balance}}
 </h3> 
 {% endfor %}
 <br><br>
-<div id="back">
-    <a href="{% url 'account:edit_bank'%}">돌아가기</a>
-</div>
+<a id="back" style="text-align: center; left: 50%;" href="{% url 'account:edit_bank'%}">돌아가기</a>
 
 {% include 'footer.html' %}
 {% endblock %}

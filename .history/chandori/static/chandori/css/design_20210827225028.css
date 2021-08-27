@@ -96,20 +96,14 @@
 
 .logoAccount{
     position: relative;
+    left: 40%;
     top: 50px;
     color: black;
-    font-size: 38px;
-    height: 150px;
-    text-align: center;
-    font-family: 'jua';
-    font-weight: 400;
-}
-
-#back{
     font-size: 30px;
-    text-align: center;
+    height: 150px;
+    text-align: left;
     font-family: 'hanna';
-    left: 40%;
+    font-weight: 600;
 }
 
 .sub_logo{

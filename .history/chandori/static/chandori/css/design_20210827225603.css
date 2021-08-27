@@ -105,11 +105,10 @@
     font-weight: 400;
 }
 
-#back{
+.back{
     font-size: 30px;
     text-align: center;
     font-family: 'hanna';
-    left: 40%;
 }
 
 .sub_logo{
