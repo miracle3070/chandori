@@ -33,6 +33,15 @@ def field(request):
 
         #print(numbers)
 
+        # 기존에 해당 날짜에 존재했던 가계부 데이터 삭제
+        exist_info = TestInfoModel.objects.filter(
+            user=request.user,
+            date = request.POST["date"]
+            )        
+        for e in exist_info:
+            e.delete()
+
+        # 입력한 가계부 데이터 저장
         for n in numbers:
             user_id = request.POST["user"]
             user = CustomUser.objects.get(pk=user_id)
@@ -59,7 +68,7 @@ def field(request):
             )
 
             transaction_info.save()
-        return redirect("accounting:home")
+        return redirect("accounting:setField", date)
 
     # method가 GET 방식일 경우
     today = DateFormat(datetime.now()).format("Y-m-d")
