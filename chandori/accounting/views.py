@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from django.utils.dateformat import DateFormat
 from .models import *
+from datetime import datetime
 import re
 
 def home(request):
@@ -37,9 +39,9 @@ def field(request):
             bank_account = request.POST["bank_account" + n]
             
             if ("is-income" + n) in request.POST:
-                type = "수입"
+                type1 = "수입"
             else:
-                type = "지출"
+                type1 = "지출"
             
             category = request.POST["category" + n]
             money = request.POST["money" + n]
@@ -49,7 +51,7 @@ def field(request):
             transaction_info = TestInfoModel.objects.create(
                 user = user,
                 bank_account = bank_account,
-                type = type,
+                type = type1,
                 category = category,
                 money = money,
                 date = date,
@@ -59,5 +61,7 @@ def field(request):
             transaction_info.save()
         return redirect("accounting:home")
 
-
-    return render(request, "account-field.html")
+    # method가 GET 방식일 경우
+    today = DateFormat(datetime.now()).format("Y-m-d")
+    trans = list(TestInfoModel.objects.filter(user=request.user.pk, date=today))
+    return render(request, "account-field.html", {"trans" : trans})

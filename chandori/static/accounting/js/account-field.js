@@ -94,8 +94,6 @@ const goToday = () => {
 // ===============================================
 // 가계부 입력 관련
 
-let fieldCount = 0;
-
 const addAccountField = () => {
     const field = 
     `<li class="field-list" id="field-list${fieldCount}">
@@ -131,9 +129,9 @@ const addAccountField = () => {
     fieldCount++;
 }
 
-for (let i=0; i < 5; i++) {
-    addAccountField();
-}
+// for (let i=0; i < 5; i++) {
+//     addAccountField();
+// }
 
 const removeAccountField = (number) => {
     const field = document.getElementById('field-list' + number);

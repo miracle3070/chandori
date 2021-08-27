@@ -50,7 +50,60 @@
         </form>
     </div>
 
+
+
     <script src="{% static 'accounting/js/account-field.js' %}"></script>
+    <script>
+        let fieldCount = 0;
+
+        const initAccountField = () => {
+            document.querySelector('.field').innerHTML = "";
+            fieldCount = 0;
+            let field = "";
+
+            {% if trans %}
+                {% for t in trans %}
+                    field = `<li class="field-list" id="field-list${fieldCount}">
+                            <label><input type="checkbox" name="is-income${fieldCount}" value="{{t.type}}">수입</label>
+                            <select class="field-category list-style" name="category${fieldCount}" value="{{t.category}}">
+                                <option value="식비">식비</option>
+                                <option value="쇼핑">쇼핑</option>
+                                <option value="편의점.마트">편의점.마트</option>
+                                <option value="카페.간식">카페.간식</option>
+                                <option value="술.유흥">술.유흥</option>
+                                <option value="교통">교통</option>
+                                <option value="기타">기타</option>
+                            </select>
+                            <input class="field-money list-style" name="money${fieldCount}" type="text" placeholder="금액 입력" value="{{t.money}}">
+                            <select class="field-bank list-style" name="bank_account${fieldCount}" value="{{t.bank_account}}">
+                                <option value="현금">현금</option>
+                                <option value="농협은행">농협은행</option>
+                                <option value="신한은행">신한은행</option>
+                                <option value="국민은행">국민은행</option>
+                                <option value="하나은행">하나은행</option>
+                                <option value="대구은행">대구은행</option>
+                                <option value="부산은행">부산은행</option>
+                                <option value="카카오뱅크">카카오뱅크</option>
+                                <option value="기업은행">기업은행</option>
+                                <option value="우리은행">우리은행</option>
+                                <option value="케이뱅크">케이뱅크</option>
+                                <option value="기타">기타</option>
+                            </select>
+                            <input class="field-memo list-style" type="text" name="memo${fieldCount}" placeholder="메모" value="{{t.memo}}">
+                            <button class="field-delete list-style btn btn-danger" type="button" onclick="removeAccountField(${fieldCount})">삭제</button>
+                        </li>`
+                        document.querySelector('.field').innerHTML += field;
+                        fieldCount++;
+                {% endfor %}
+            {% endif %}
+        }
+
+        initAccountField();
+        for (let i=fieldCount; i < 5; i++){
+            addAccountField();
+        }
+
+    </script>
     
 </body>
 </html>
