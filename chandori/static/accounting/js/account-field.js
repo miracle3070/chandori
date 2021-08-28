@@ -171,7 +171,6 @@ const nextMonth = () => {
 const goToday = () => {
     date = new Date();
     renderCalendar();
-    printIncomeExpense(date);  // HTML에 있는 함수
 }
 
 
