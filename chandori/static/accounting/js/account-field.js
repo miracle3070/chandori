@@ -52,8 +52,8 @@ const renderCalendar = () => {
             <div class="date" id="date${date}" onclick="setAccountFieldDate(date.getFullYear(), date.getMonth() + 1, ${date});">
             <a href="./${dateString}">
             <span class="${condition}">${date}</span>
-            <div class="income">수입: 15000</div>
-            <div class="expense">지출: 8000</div>
+            <div id="income${date}" class="income">아무 날짜나</div>
+            <div id="expense${date}" class="expense">클릭해주세요.</div>
             </a>
             </div>
             `;
@@ -128,8 +128,8 @@ const modifyCalendar = (inputDate) => {
             <div class="date" id="date${date}" onclick="setAccountFieldDate(date.getFullYear(), date.getMonth() + 1, ${date});">
             <a href="./${dateString}">
             <span class="${condition}">${date}</span>
-            <div class="income">수입: 15000</div>
-            <div class="expense">지출: 8000</div>
+            <div id="income${date}" class="income">수입: 15000</div>
+            <div id="expense${date}" class="expense">지출: 8000</div>
             </a>
             </div>
             `;
@@ -171,6 +171,7 @@ const nextMonth = () => {
 const goToday = () => {
     date = new Date();
     renderCalendar();
+    printIncomeExpense(date);  // HTML에 있는 함수
 }
 
 

@@ -57,6 +57,7 @@
     <script>
         let fieldCount = 0;
 
+        // 페이지 로드시 기존에 저장했던 가계부 내역을 출력하는 함수
         const initAccountField = () => {
             document.querySelector('.field').innerHTML = "";
             fieldCount = 0;
@@ -104,11 +105,31 @@
             addAccountField();
         }
 
+        // 현재 날짜(월)이 아닌 다른 날짜(월)로 이동할 시 달력을 날짜에 맞게 수정하는 루틴
         if ({{dateString}} !== 0){
             modifyCalendar("{{dateString}}");
             setAccountFieldDate(date.getFullYear(), date.getMonth()+1, date.getDate());
         }
 
+        // 달력에 날짜별 수입, 지출 현황 출력
+        const printIncomeExpense = (date) => {
+            viewYear = date.getFullYear();
+            viewMonth = date.getMonth();
+
+            // 해당 월의 마지막 날짜를 구함
+            const thisLast = new Date(viewYear, viewMonth + 1, 0);
+            const TLDate = thisLast.getDate();
+
+
+            // 날짜별 수입, 지출 삽입
+            {% for t in total %}
+                document.getElementById(`income{{t.date}}`).innerHTML = `수입: {{t.income}}`;
+                document.getElementById(`expense{{t.date}}`).innerHTML = `지출: {{t.expense}}`;
+            {% endfor %}
+        }
+        printIncomeExpense(date);
+
+        
     </script>
     
 </body>

@@ -106,12 +106,12 @@ a:hover {
 
 .day:nth-child(7n + 1),
 .date:nth-child(7n + 1) {
-    color: #D13E3E;
+    color: #D13E3E !important;
 }
 
 .day:nth-child(7n),
 .date:nth-child(7n) {
-    color: #396EE2;
+    color: #396EE2 !important;
 }
 
 .other {

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.utils.dateformat import DateFormat
 from .models import *
 from datetime import datetime
+import calendar
 import re
 
 def home(request):
@@ -70,14 +71,49 @@ def field(request):
             transaction_info.save()
         return redirect("accounting:setField", date)
 
-    # method가 GET 방식일 경우
+    ########## method가 GET 방식일 경우 ###############
     today = DateFormat(datetime.now()).format("Y-m-d")
+    date_list = today.split("-")
+    last_date = calendar.monthrange(int(date_list[0]), int(date_list[1]))[1]
+
+    # 일자별 총 수익, 지출 구하기
+    total = []
+    for i in range(1, last_date+1):
+        date_list[2] = "%02d" % i
+        date = "-".join(date_list)
+        date_trans = list(TestInfoModel.objects.filter(user=request.user.id, date=date))
+        date_income = 0
+        date_expense = 0
+        for d in date_trans:
+            if d.type == "수입":
+                date_income += d.money
+            else:
+                date_expense += d.money
+        total.append({"date":i, "income":date_income, "expense":date_expense})
+
     trans = list(TestInfoModel.objects.filter(user=request.user.pk, date=today))
-    return render(request, "account-field.html", {"trans" : trans, "dateString": 0})
+    return render(request, "account-field.html", {"trans" : trans, "dateString": 0, "total":total})
 
 
-def setField(request, date):
-    print("안녕하세요!")
-    print(date)
-    trans = list(TestInfoModel.objects.filter(user=request.user.pk, date=date))
-    return render(request, "account-field.html", {"trans" : trans, "dateString" : date})
+def setField(request, dateString):
+    date_list = dateString.split("-")
+    last_date = calendar.monthrange(int(date_list[0]), int(date_list[1]))[1]
+
+    # 일자별 총 수익, 지출 구하기
+    total = []
+    for i in range(1, last_date+1):
+        date_list[2] = "%02d" % i
+        date = "-".join(date_list)
+        date_trans = list(TestInfoModel.objects.filter(user=request.user.id, date=date))
+        date_income = 0
+        date_expense = 0
+        for d in date_trans:
+            if d.type == "수입":
+                date_income += d.money
+            else:
+                date_expense += d.money
+        total.append({"date":i, "income":date_income, "expense":date_expense})
+
+    # 지정한 날짜에 해당하는 가계부 불러오기
+    trans = list(TestInfoModel.objects.filter(user=request.user.pk, date=dateString))
+    return render(request, "account-field.html", {"trans" : trans, "dateString" : date, "total":total})

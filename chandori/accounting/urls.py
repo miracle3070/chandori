@@ -6,5 +6,5 @@ app_name = 'accounting'
 urlpatterns = [
     path('', accounting.views.home, name="home"),
     path('field/', accounting.views.field, name="field"),
-    path('field/<str:date>', accounting.views.setField, name="setField"),
+    path('field/<str:dateString>', accounting.views.setField, name="setField"),
 ]
