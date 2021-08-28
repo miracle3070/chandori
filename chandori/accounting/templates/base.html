@@ -79,8 +79,9 @@
         <a href="{% url 'account:edit' %}">정보 수정</a>
         <div class="nav-underline"></div>
     </nav>
+    {% block content%}
     
-
+    {% endblock %}
     <div class="bottom">
         <img src="{% static 'chandori//img/bot_fin.png' %}" alt="" width="100%" >
         <div>

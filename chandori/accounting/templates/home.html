@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>짠돌이 메인</title>
+    <!-- 차트 & 피스라벨 자바스립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+{% load static %}
+    <!-- 프로그래스바 부트스트랩 -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'accounting/home/css/home.css' %}">
+</head>
+<body>
+    <div class="page">
+        <div class="ad_area">
+            <div class="first_ad">
+                광고영역
+            </div>
+        </div>
+        <div class="content">
+            <div class="graph_name">
+                {{today}}월 소비그래프
+            </div>
+            
+            <div class="total">
+                총 소비금액: {{total}}원
+            </div>
+            <div class="chart_area" style="width: 1000px;">
+                <div>
+                    <canvas id="chart" style="width: 1000px;"></canvas>
+                    <img src="{% static 'accounting/home/image/wizard.png'%}" alt="마법사">
+                </div>
+            </div>
+            <div class="result">
+                <div class="title">
+                    {{user.username}}님은 절약의 마술사!
+                    <img src="{% static 'accounting/home/image/magic-wand.png'%}" alt="" width="45px" height="45px">
+                </div>
+                <div class="phrase">
+                    현재 {{user.username}}님의 절약률은 비슷한 수익을 가진 사람들 중 <span class="strong">상위 {{total_p}}%</span>에 속합니다.
+                </div>
+            </div>
+            <details>
+                <summary>상세보기</summary>
+                <div class="detail_result">
+                    <div class="demo">
+                        <div class="item">
+                            <div class="bar">
+                                <div class="bar1" id="bar_tit">
+                                    {{category_name0}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar1" style="width: {{r_p_list0}}%;">
+                                        <div class="progress-value">{{p_list0}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar2" id="bar_tit">
+                                    {{category_name1}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar2" style="width: {{r_p_list1}}%;">
+                                        <div class="progress-value">{{p_list1}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar3" id="bar_tit">
+                                    {{category_name2}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar3" style="width: {{r_p_list2}}%;">
+                                        <div class="progress-value">{{p_list2}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar4" id="bar_tit">
+                                    {{category_name3}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar4" style="width: {{r_p_list3}}%;">
+                                        <div class="progress-value">{{p_list3}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar5" id="bar_tit">
+                                    {{category_name4}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar5" style="width: {{r_p_list4}}%;">
+                                        <div class="progress-value">{{p_list4}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar6" id="bar_tit">
+                                    {{category_name5}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar6" style="width: {{r_p_list5}}%;">
+                                        <div class="progress-value">{{p_list5}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar7" id="bar_tit">
+                                    {{category_name6}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar7" style="width: {{r_p_list6}}%;">
+                                        <div class="progress-value">{{p_list6}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar8" id="bar_tit">
+                                    {{category_name7}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar8" style="width: {{r_p_list7}}%;">
+                                        <div class="progress-value">{{p_list7}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bar">
+                                <div class="bar9" id="bar_tit">
+                                    {{category_name8}}
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar9" style="width: {{r_p_list8}}%;">
+                                        <div class="progress-value">{{p_list8}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="worst">
+                        홍길동님이 가장 절약을 하지 못한 항목은&nbsp<span class="strong">쇼핑!</span>
+                        <img src="{% static 'accounting/home/image/shopping-cart.png'%}" alt="" width="35" height="35">
+                    </div>
+                    <div class="tip">
+                        <a href="#">
+                            >> 짠돌이들의 쇼핑 tip 보러가기
+                        </a>
+                    </div>
+                </div>
+            </details>
+            </div>
+        <div class="ad_area">
+            <div class="second_ad">
+                광고영역
+            </div>
+        </div>
+    </div>
+        <script>
+        var category = [];
+        var c = 0 ;
+        {% for consum in consum_list_k %}
+        category[c] = "{{consum}}";
+        c++;
+        {% endfor %}
+
+        var value = [];
+        var v = 0 ;
+        {% for consum in consum_list_v %}
+        value[v] = {{consum}};
+        v++;
+        {% endfor %}
+        document.write("")
+        new Chart(document.getElementById("chart"), {
+        type: 'doughnut',
+        data: {//views.py에서 모든 카테고리와 항목을 내림차순 가격으로 정렬했기 때문에 순서대로 배열에 삽입
+            labels: [category[0], category[1], category[2], category[3], category[4], category[5], category[6], category[7], category[8]],
+            datasets: [
+                {
+                backgroundColor: ["#49006a", "#7a0177", "#ae017e", "#dd3497", "#f768a1", "#fa9fb5", "#fcc5c0", "#fde0dd", "#fff7f3"],
+                data: [value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8]],
+                datalabels: {
+                    anchor: 'end',
+                    align: 'end',
+                    offset: 0
+                },
+                }
+            ]
+        },
+        options: {
+      legend: false, //범례 숨김
+      plugins: {
+       labels: {
+         render: function (args) {
+            const label = args.label,
+            percentage = args.percentage;
+            return 3 < percentage ? label + '\n' + percentage + '%' : " ";
+         },
+        fontSize: 15,
+        fontColor: "black",
+        position: "outside",
+        fontStyle: 'bold',
+        display: 'false',
+       },        
+     }
+  },
+});
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,410 @@
+@font-face {
+    font-family: 'hanna2'; 
+    src: url('../font/BMHANNA_11YRS_TTF.TTF') format('truetype');
+} 
+@font-face {
+    font-family: 'hanna';
+    src: url('../font/BMHANNAPRO.TTF') format('truetype');
+}   
+@font-face {
+    font-family: 'jua';
+    src: url('../font/BMJUA_ttf.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'DO';
+    src: url('../font/BMDOHYEON_ttf.ttf') format('truetype');
+} 
+@font-face {
+    font-family: 'air';
+    src: url('../font/BMHANNAAIR_TTF.TTF') format('truetype');
+} 
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.html, body{
+    width: 100%;
+    font-family: 'DO';
+}
+
+.page{
+    /* background-color: yellow; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;/*광고1-content-광고2 가로 배열 방식*/
+    justify-content:space-between;/*광고를 양 끝에 붙임*/
+}
+
+@media (max-width: 1024px) { 
+    .page{
+        /* background-color: yellow; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;/*광고1-content-광고2 세로 배열 방식*/
+        justify-content:space-between;/*광고를 양 끝에 붙임*/
+    }
+}
+
+.ad_area{
+    /* background-color: teal; */
+    display: flex;
+    align-items: center;/*광고가 항상 같은 위치에 있게 할 것*/
+    width: 10%;
+}
+
+@media (max-width: 1024px) {
+    .ad_area{
+        /* background-color: teal; */
+        display: flex;
+        align-items: center;/*광고가 항상 같은 위치에 있게 할 것*/
+        width: 100%;
+    }
+}
+
+.first_ad, .second_ad{
+    background-color: gray;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .first_ad, .second_ad{
+        background-color: gray;
+        width: 100%;
+        height: 100px;
+    }
+}
+
+.content{
+    /* background-color: green; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;/*차트이름-차트-결과-항목별 통계 세로정렬 방식*/
+    align-items: center;/*중앙 정렬*/
+    text-align: center;/*글자 중앙 정렬*/
+}
+
+.graph_name{
+    /* background-color: blue; */
+    margin-top: 10%;
+    /* color: rgb(73,0,106); */
+    /* color: rgb(174,1,126); */
+    color: rgb(221,52,151);
+    font-size: 3vmin;
+    font-weight: bold;
+    width: 100%;
+}
+
+
+.select{
+    border: none;
+    font-size: 3vmin;
+    color: rgb(221,52,151);
+    font-family: 'DO';
+    background:none;
+    direction: rtl;
+}
+
+.total{
+    /* background-color: blue; */
+    text-align: right;
+    margin-top: 5%;
+    margin-left: 40%;
+    margin-bottom: -2%;
+    color: black;
+    font-weight: bold;
+    font-size: 1.5vmin;
+}
+
+.chart_area img{/*차트 중앙에 걸치게 조정 필요*/
+    width: 120px;
+    margin-top: -310px;
+    margin-left: -60px;
+    position:absolute
+}
+
+.result{
+    width: 100%;
+}
+
+.title{/*사용자 호칭*/
+    margin-top: 3%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgb(221,52,151);
+    font-weight: bold;
+    font-size: 2vmin;
+}
+
+.phrase{
+    /* background-color: purple; */
+    margin-top: 5%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    font-size: 1.5vmin;
+}
+
+.strong{
+    color: rgb(221,52,151);
+}
+
+details{
+    width: 100%;
+    margin-top: 3%;
+}
+
+details summary{
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.5vmin;
+}
+
+.detail_result{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction:column;
+}
+
+.bar{
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#bar_tit{
+    text-align: end;
+    margin-right: 30px;
+    font-weight: bold;
+    font-size: 2vmin;
+    text-shadow: 1px 1px 1px rgb(196, 191, 191);
+}
+
+.bar1{
+    color: rgb(73,0,106);
+}
+
+.bar2{
+    color: rgb(122,1,119);
+}
+
+.bar3{
+    color: rgb(174,1,126);
+}
+
+.bar4{
+    color: rgb(221,52,151);
+}
+
+.bar5{
+    color: rgb(247,104,161);
+}
+
+.bar6{
+    color: rgb(250,159,181);
+}
+
+.bar7{
+    color: rgb(252,197,192);
+}
+
+.bar8{
+    color: rgb(253,224,221);
+}
+
+.bar9{
+    color: rgb(255,247,243);
+}
+
+
+.heading-title
+{
+   margin-bottom: 100px;
+}
+
+.progress{
+    width: 500px;
+    height: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    overflow: visible;
+}
+
+.progress .progress-bar1, .progress-bar2, .progress-bar3, .progress-bar4, .progress-bar5, .progress-bar6, .progress-bar7, .progress-bar8, .progress-bar9{
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+    -webkit-animation: animate-positive 2s;
+    animation: animate-positive 2s;
+}
+
+.progress .progress-bar1:after{
+    content: url('../image/run1.png');
+    transform: scale(0.1) translate(300%, -450%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(73,0,106);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar2:after{
+    content: url('../image/run2.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(122,1,119);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar3:after{
+    content: url('../image/run3.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(174,1,126);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar4:after{
+    content: url('../image/run4.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(221,52,151);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar5:after{
+    content: url('../image/run5.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(247,104,161);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar6:after{
+    content: url('../image/run6.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(250,159,181);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar7:after{
+    content: url('../image/run7.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(252,197,192);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar8:after{
+    content: url('../image/run8.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(253,224,221);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-bar9:after{
+    content: url('../image/run9.png');
+    transform: scale(0.1) translate(300%, -460%);
+    width: 100px;
+    font-family: fontawesome;
+    font-size: 15px;
+    color: rgb(255,247,243);
+    position: absolute;
+    top: -8px;
+    right: 0;
+}
+
+.progress .progress-value{
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color:rgb(122, 1, 119);
+    position: absolute;
+    margin-top: 40px;
+    right: -30px;
+}
+
+.progress.blue{ background: #049dff; }
+
+
+@-webkit-keyframes animate-positive{
+    0% { width: 0%; }
+}
+
+@keyframes animate-positive{
+    0% { width: 0%; }
+}
+/* @charset "utf-8"; */
+/* CSS Document */
+
+.worst{
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    font-size: 1.5vmin;
+}
+
+.tip{
+    margin-top: 5%;
+    margin-bottom: 20%;
+}
+
+.tip a{
+    color: rgb(122, 1, 119);
+    font-weight: bold;
+    font-size: 2vmin;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: rgba(122, 1, 116, 0.7);
+}
