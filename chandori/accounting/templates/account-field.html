@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가계부 달력</title>
+    <link rel="stylesheet" href="{% static 'accounting/css/account-field.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="calendar">
+        <div class="header">
+            <div class="year-month"></div>
+            <div class="nav">
+                <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+                <button class="nav-btn go-today" onclick="goToday()">Today</button>
+                <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+            </div>
+        </div>
+        <div class="main">
+            <div class="days">
+                <div class="day">일</div>
+                <div class="day">월</div>
+                <div class="day">화</div>
+                <div class="day">수</div>
+                <div class="day">목</div>
+                <div class="day">금</div>
+                <div class="day">토</div>
+            </div>
+            <div class="dates"></div>
+        </div>
+    </div>
+
+    <div class="account-field">
+        <form action="{% url 'accounting:field' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{ user.id }}" name="user">
+            <div>
+                <input id="account-date" type="date" name="date">
+            </div>
+            <ul class="field">
+                <!-- 여기에 가계부 입력칸이 동적으로 생성됨. -->
+            </ul>
+            <button class="field-add btn btn-secondary" type="button" onclick="addAccountField() ">항목 추가</button>
+            <input class="btn btn-success" type="submit" value="입력 완료">
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'accounting/js/account-field.js' %}"></script>
+    <script>
+        let fieldCount = 0;
+
+        const addAccountField = () => {
+            const field = 
+            `<li class="field-list" id="field-list${fieldCount}">
+                <label><input type="checkbox" name="is-income${fieldCount}">수입</label>
+                <select class="field-category list-style" name="category${fieldCount}">
+                    <option value="식비">식비</option>
+                    <option value="쇼핑">쇼핑</option>
+                    <option value="편의점.마트">편의점.마트</option>
+                    <option value="카페.간식">카페.간식</option>
+                    <option value="술.유흥">술.유흥</option>
+                    <option value="교통">교통</option>
+                    <option value="의료비">의료비</option>
+                    <option value="공과금">공과금</option>
+                    <option value="기타">기타</option>
+                </select>
+                <input class="field-money list-style" name="money${fieldCount}" type="text" placeholder="금액 입력">
+                <select class="field-bank list-style" name="bank_account${fieldCount}">
+                    {% for b in bankAccount %}
+                        <option value="{{ b.id }}">{{ b.bank }} {{ b.account_num }}</option>
+                    {% endfor %}
+                </select>
+                <input class="field-memo list-style" type="text" name="memo${fieldCount}" placeholder="메모">
+                <button class="field-delete list-style btn btn-danger" type="button" onclick="removeAccountField(${fieldCount})">삭제</button>
+            </li>`
+            document.querySelector('.field').innerHTML += field;
+            fieldCount++;
+        }
+
+        // 페이지 로드시 기존에 저장했던 가계부 내역을 출력하는 함수
+        const initAccountField = () => {
+            document.querySelector('.field').innerHTML = "";
+            fieldCount = 0;
+            let field = "";
+
+            {% if trans %}
+                {% for t in trans %}
+                    field = `<li class="field-list" id="field-list${fieldCount}">
+                            <label><input type="checkbox" name="is-income${fieldCount}" value="{{t.type}}">수입</label>
+                            <select class="field-category list-style" name="category${fieldCount}" value="{{t.category}}">
+                                <option value="식비">식비</option>
+                                <option value="쇼핑">쇼핑</option>
+                                <option value="편의점.마트">편의점.마트</option>
+                                <option value="카페.간식">카페.간식</option>
+                                <option value="술.유흥">술.유흥</option>
+                                <option value="교통">교통</option>
+                                <option value="술.유흥">술.유흥</option>
+                                <option value="교통">교통</option>
+                                <option value="의료비">의료비</option>
+                                <option value="공과금">공과금</option>
+                                <option value="기타">기타</option>
+                            </select>
+                            <input class="field-money list-style" name="money${fieldCount}" type="text" placeholder="금액 입력" value="{{t.money}}">
+                            <select class="field-bank list-style" name="bank_account${fieldCount}" value="{{t.bank_account}}">
+                                {% for b in bankAccount %}
+                                    <option value="{{ b.id }}">{{ b.bank }} {{ b.account_num }}</option>
+                                {% endfor %}
+                            </select>
+                            <input class="field-memo list-style" type="text" name="memo${fieldCount}" placeholder="메모" value="{{t.memo}}">
+                            <button class="field-delete list-style btn btn-danger" type="button" onclick="removeAccountField(${fieldCount})">삭제</button>
+                        </li>`
+                        document.querySelector('.field').innerHTML += field;
+                        fieldCount++;
+                {% endfor %}
+            {% endif %}
+        }
+
+        initAccountField();
+        for (let i=fieldCount; i < 5; i++){
+            addAccountField();
+        }
+
+        // 현재 날짜(월)이 아닌 다른 날짜(월)로 이동할 시 달력을 날짜에 맞게 수정하는 루틴
+        if ({{dateString}} !== 0){
+            modifyCalendar("{{dateString}}");
+            setAccountFieldDate(date.getFullYear(), date.getMonth()+1, date.getDate());
+        }
+
+        // 달력에 날짜별 수입, 지출 현황 출력
+        const printIncomeExpense = (date) => {
+            // viewYear = date.getFullYear();
+            // viewMonth = date.getMonth();
+
+            // // 해당 월의 마지막 날짜를 구함
+            // const thisLast = new Date(viewYear, viewMonth + 1, 0);
+            // const TLDate = thisLast.getDate();
+
+            // 날짜별 수입, 지출 삽입
+            {% for t in total %}
+                document.getElementById(`income{{t.date}}`).innerHTML = `수입: {{t.income}}`;
+                document.getElementById(`expense{{t.date}}`).innerHTML = `지출: {{t.expense}}`;
+            {% endfor %}
+        }
+        printIncomeExpense(date);
+    </script>
+    
+</body>
+</html>
