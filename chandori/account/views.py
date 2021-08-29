@@ -31,6 +31,8 @@ def edit_bank(request):
     add_Account.account_num = request.POST.get('account_num')
     add_Account.bank = request.POST.get('bank')
     add_Account.balance = request.POST.get('balance')
+    add_Account.nickname = request.POST.get('nickname')
+    add_Account.user = request.user
     if request.method == 'GET':
         add_Account.name = request.GET.get('name')
         user_change_form.nickname = request.GET.get('name')
@@ -44,7 +46,7 @@ def edit_bank(request):
     return render(request, 'add_Account.html')
 
 def bank_detail(request):
-    detail = BankAccount.objects.all()
+    detail = BankAccount.objects.filter(user=request.user)
     return render(request, 'Account_detail.html', {'detail':detail})
 
 def bank_delete(request, BankAccount_id):
