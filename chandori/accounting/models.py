@@ -33,5 +33,3 @@ class TestInfoModel(models.Model):
 
     def __str__(self):
         return str(self.id) + " - " + self.user.username + " - " + str(self.date)
-
-

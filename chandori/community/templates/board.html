@@ -2,8 +2,9 @@
 
 {% block content %}
 <nav style="top: 100px;">
-    <a href="{% url 'accounting:home' %}">가계부</a>
-    <a href="{% url 'community:board' %}" class="is-current">질문게시판</a>
+    <a href="{% url 'accounting:home' %}" >지출통계</a>
+    <a href="{% url 'accounting:field' %}">가계부 입력</a>
+    <a href="{% url 'community:board' %}" class="is-current">커뮤니티</a>
     <a href="{% url 'account:edit' %}" >정보 수정</a>
     <div class="nav-underline"></div>
 </nav>

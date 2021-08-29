@@ -73,14 +73,18 @@
         </div>
     </div>
 
-    <nav>
-        <a href="{% url 'accounting:home' %}" class="is-current">가계부</a> 
-        <a href="{% url 'community:board' %}">질문게시판</a>
-        <a href="{% url 'account:edit' %}">정보 수정</a>
-        <div class="nav-underline"></div>
-    </nav>
-    
 
+    <nav>
+        <a href="{% url 'accounting:home' %}" class="is-current">지출통계</a>
+        <a href="{% url 'accounting:field' %}">가계부 입력</a>
+        <a href="{% url 'community:board' %}">커뮤니티</a>
+        <a href="{% url 'account:edit' %}" >정보 수정</a>
+        <div class="nav-underline"></div>
+    </nav>   
+
+    {% block content%}
+    
+    {% endblock %}
     <div class="bottom">
         <img src="{% static 'chandori//img/bot_fin.png' %}" alt="" width="100%" >
         <div>

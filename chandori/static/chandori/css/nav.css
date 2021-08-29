@@ -53,12 +53,12 @@
   } */
 
   :root {
-    --nav-length: 3;
+    --nav-length: 4;
     --nav-under: 5;
     --nav-width: calc(100% / var(--nav-length));
   }
   nav {
-    top: 550px;
+    /* top: 550px; */
     position: relative;
     display: flex;
     width: 80%;
@@ -66,6 +66,10 @@
     font-family: DO;
     font-size: 30px;
     font-weight: 600;
+  }
+
+  #nav_home{
+    margin: 0;
   }
   nav a {
     display: block;
@@ -105,10 +109,10 @@
   nav a:nth-child(3).is-current ~ .nav-underline {
     left: calc(var(--nav-width) * 2);
   }
-  /* nav a:nth-child(4).is-current ~ .nav-underline {
+  nav a:nth-child(4).is-current ~ .nav-underline {
     left: calc(var(--nav-width) * 3);
   }
-   */
+  
 
   nav a:nth-child(1):hover ~ .nav-underline {
     left: calc(var(--nav-width) * 0);
@@ -119,7 +123,7 @@
   nav a:nth-child(3):hover ~ .nav-underline {
     left: calc(var(--nav-width) * 2);
   }
-  /* nav a:nth-child(4):hover ~ .nav-underline {
+  nav a:nth-child(4):hover ~ .nav-underline {
     left: calc(var(--nav-width) * 3);
   }
-  */
+ 
