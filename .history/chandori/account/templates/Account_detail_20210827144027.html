@@ -1,0 +1,21 @@
+{% include 'header.html' %}
+
+{% block content %}
+<nav style="top: 100px;">
+    <a href="{% url 'accounting:home' %}">가계부</a>
+    <a href="{% url 'community:board' %}">질문게시판</a>
+    <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
+    <div class="nav-underline"></div>
+</nav>
+
+
+{% csrf_token %}
+{% for bankform in detail %}
+<br>
+<h3 style="text-align: center;"><br>{{bankform.bank}} {{bankform.account_num}} <a href="{% url 'account:delete' bankform.id %}">삭제하기</a> 
+    <br> 잔액:{{bankform.balance}}
+</h3> 
+{% endfor %}
+
+{% include 'footer.html' %}
+{% endblock %}

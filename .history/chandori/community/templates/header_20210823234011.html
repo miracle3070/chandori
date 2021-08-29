@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'chandori/css/design.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chandori/css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'account/css/edits.css' %}">
+    <link rel="stylesheet" href="{% static 'account/js/combo.js' %}">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        @font-face {
+            font-family: 'hanna2';
+            src: url('font/BMHANNA_11YRS_TTF.TTF') format('truetype');
+        } 
+        @font-face {
+            font-family: 'hanna';
+            src: url('font/BMHANNAPRO.TTF') format('truetype');
+        }   
+        @font-face {
+            font-family: 'jua';
+            src: url('font/BMJUA_ttf.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'DO';
+            src: url('font/BMDOHYEON_ttf.ttf') format('truetype');
+        } 
+        @font-face {
+            font-family: 'air';
+            src: url('font/BMHANNAAIR_TTF.TTF') format('truetype');
+        } 
+        a{text-decoration: none;}
+        a:link {text-decoration: none; color: rgb(53, 48, 48);}
+        a:visited {text-decoration: none; color: rgb(53, 48, 48);}
+        a:active {text-decoration: none; color: grey;}
+        a:hover {text-decoration: none; color: gray;}
+    </style>
+</head>
+<body>
+    <div class="login">
+        {% if user.is_authenticated %}
+            <label>{{user.username}}님 환영합니다!</label>
+            <a href="{% url 'account:logout' %}">로그아웃</a>
+        {% else%}
+            <a href="{% url 'account:login' %}">로그인 </a>
+            <a >|</a>
+            <a href="{% url 'account:signup' %}">회원가입</a>
+
+        {% endif %}
+    </div>
+
+    <div class="logo2">짠돌이</div>
+
+</body>
+</html>

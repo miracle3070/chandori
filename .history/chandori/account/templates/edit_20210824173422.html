@@ -1,0 +1,69 @@
+{% include 'community/templates/header.html' %}
+
+{% block content %}
+
+    <nav style="top: 100px;">
+        <a href="{% url 'accounting:home' %}">가계부</a>
+        <a href="{% url 'community:board' %}">질문게시판</a>
+        <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
+        <div class="nav-underline"></div>
+    </nav>
+
+    <div id="login">
+        <div class="container">
+            <div id="login-row">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="POST">
+                            <h3 class="text-center text-info">회원정보 수정</h3>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">닉네임</label>
+                                <input type="text" name="username" id="input1" class="form-control" value="{{ user.nickname }}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="password">연령대</label>
+                                <select name="age" class="select-arrow-image">
+                                    <option value="10">10대</option>
+                                    <option value="20">20대</option>
+                                    <option value="30">30대</option>
+                                    <option value="40">40대</option>
+                                    <option value="50">50대 이상</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">직업</label>
+                                &nbsp;&nbsp;
+
+                                <select name="job" class="select-arrow-image">
+                                    <option value="student">학생</option>
+                                    <option value="univ_student">대학생/취준생</option>
+                                    <option value="worker">직장인</option>
+                                </select>
+                            </div>
+                            <div class="form-group" >
+                                <label for="password">연령대</label>
+                                <select name="income" class="select-arrow-image">
+                                    <option value="10">10만원 이하</option>
+                                    <option value="50">50만원 이하</option>
+                                    <option value="100">100만원 이하</option>
+                                    <option value="150">150만원 이상</option>
+                                </select>
+                            </div>
+ 
+
+                               
+                            <input type="submit" value="수정완료">
+                            
+                            
+                        </form>
+                        <br><button type="submit">수정완료</button><br>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'community/templates/footer.html' %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% include 'community/templates/header.html' %}
+
+{% block content %}
+
+{% csrf_token %}
+{% for bankform in bankforms %}
+<h5>{{bankform.bank}} {{bankform.account_num}} <br> {{bankform.balance}}</h5> 
+{% endfor %}
+
+{% include 'community/templates/footer.html' %}
+{% endblock %}

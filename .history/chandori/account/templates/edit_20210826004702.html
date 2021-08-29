@@ -1,0 +1,75 @@
+{% include 'community/templates/header.html' %}
+
+{% block content %}
+
+    <nav style="top: 100px;">
+        <a href="{% url 'accounting:home' %}">가계부</a>
+        <a href="{% url 'community:board' %}">질문게시판</a>
+        <a href="{% url 'account:edit' %}" class="is-current">정보 수정</a>
+        <div class="nav-underline"></div>
+    </nav>
+
+    <div id="login">
+        <div class="container">
+            <div id="login-row">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="{% url 'account:edit' %}" method="POST">
+                            <h3 class="text-center text-info">회원정보 수정</h3>
+                            
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="nickname">닉네임</label>
+                                <input type="text" name="nickname" id="input1" class="form-control" value="{{ user.nickname }}">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="age">연령대</label>
+                                
+                                <select name="age" class="select-arrow-image">
+                                    <option value="{{ user.age }}" selected hidden>{{ user.age }}대</option>
+                                    <option value="10">10대</option>
+                                    <option value="20">20대</option>
+                                    <option value="30">30대</option>
+                                    <option value="40">40대</option>
+                                    <option value="50">50대 이상</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="job">직업</label>
+                                &nbsp;&nbsp;
+
+                                <select name="job" class="select-arrow-image">
+                                    <option value="{{ user.job }}" selected hidden>{{ user.job }}</option>
+                                    <option value="학생">학생</option>
+                                    <option value="대학생/취준생">대학생/취준생</option>
+                                    <option value="직장인">직장인</option>
+                                </select>
+                            </div>
+                            <div class="form-group" >
+                                <label for="income">연봉</label>
+                                <select name="income" class="select-arrow-image">
+                                    <option value="{{ user.income }}" selected hidden>{{ user.income }}만원</option>
+                                    <option value="10">10만원 이하</option>
+                                    <option value="50">50만원 이하</option>
+                                    <option value="100">100만원 이하</option>
+                                    <option value="150">150만원 이상</option>
+                                </select>
+                            </div>
+                            {% for account in add_Account %}
+                            <h4>{{account.bank}} {{account.account_num}}</h4> <br> {{account.balance}}
+                            {% endfor %}
+                            <br><a class="text-center text-info" href="{% url 'account:edit_bank' %}" style="font-size: 20px;">계좌 추가하기</a>
+                            
+                            <br><button type="submit">수정완료</button><br>
+                            
+                        </form>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'community/templates/footer.html' %}
+{% endblock %}
