@@ -14,6 +14,9 @@ p = re.compile("money[0-9]+")
 
 # 가계부 입력 view
 def field(request):
+    if request.user.is_authenticated == False:
+        return redirect("accounting:home")
+
     if request.method == "POST":
         # 전달받은 데이터 중에서 money* 항목 이름만 얻어옴.
         recv_data = request.POST.keys()
@@ -96,6 +99,9 @@ def field(request):
 
 
 def setField(request, dateString):
+    if request.user.is_authenticated == False:
+        return redirect("accounting:home")
+
     date_list = dateString.split("-")
     last_date = calendar.monthrange(int(date_list[0]), int(date_list[1]))[1]
 
