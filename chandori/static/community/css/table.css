@@ -1,8 +1,15 @@
+.main_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 div#big_box{
     text-align: center;
     width: 1000px;
     height: 1200px;
-    border: 1px solid violet;
+    /* border: 1px solid violet; */
     top: 5%;
     left: 50%;
 }
@@ -19,7 +26,7 @@ div#big_box{
     margin: 12px 0px 12px 12px;
     float: left;
 }
-#side_content{
+.side_content{
     display: inline;
     color: #474747;
     font-weight: lighter;
@@ -34,7 +41,7 @@ div#big_box{
     text-align: center;
     font-weight: bold;
     font-size: x-large;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 780px;
     height: 400px;
     float: left;

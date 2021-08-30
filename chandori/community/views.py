@@ -24,9 +24,13 @@ def create(request):
     if form.is_valid():
         new_blog = form.save(commit=False)
         new_blog.pub_date = timezone.now()
+        new_blog.writer = request.user
         new_blog.save()
 
-        return redirect('detail', new_blog.id)
+        if new_blog.category == "정보 게시판":
+            return redirect('community:detail', new_blog.id)
+        else:
+            return redirect('community:detail_ques', new_blog.id)
 
     # if request.method == 'POST':
     #     new_blog = Blog()
@@ -35,7 +39,7 @@ def create(request):
     #     new_blog.body = request.POST['body']
     #     new_blog.pub_date = timezone.now()
     #     new_blog.save()
-    return redirect('community')
+    return redirect('community:community')
 
 def update(request, id):
     blog = get_object_or_404(Blog, pk=id)
@@ -49,14 +53,17 @@ def updateAction(request, id) :
     # blog.category = request.POST['category']
     blog.content = request.POST['content']
     blog.save()
-    
-    return redirect('detail', blog.id)
+
+    if blog.category == "정보 게시판":    
+        return redirect('community:detail', blog.id)
+    else:
+        return redirect('community:detail_ques', blog.id)
 
 def delete(request, id):
     blog = get_object_or_404(Blog, pk=id)
     blog.delete()
 
-    return redirect('community')
+    return redirect('community:community')
 
 def detail(request, id):
     blog = get_object_or_404(Blog, pk=id)
@@ -66,11 +73,16 @@ def detail(request, id):
 def detail_ques(request, id):
     blog = get_object_or_404(Blog, pk=id)
 
-    return render(request, "detail.html", {'blog':blog})
+    return render(request, "detail_ques.html", {'blog':blog})
 
 def inform(request):
-    blog = Blog.objects.all().filter(category='정보 게시판').order_by('-created_date')
-    return render(request, "inform.html")
+    blog = Blog.objects.filter(category='정보 게시판').order_by('-created_date')
+    return render(request, "inform.html", {"blogs":blog})
 
 def question(request):
-    return render(request, "question.html")
+    blog = Blog.objects.filter(category='질문 게시판').order_by('-created_date')
+    return render(request, "question.html", {'blogs':blog})
+
+def my_content(request):
+    blog = Blog.objects.filter(writer=request.user)
+    return render(request, "my_content.html", {'blogs':blog})

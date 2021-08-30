@@ -7,11 +7,10 @@
     <title>[짠돌이] 수정하기</title>
 </head>
 <body>
-    <form action="{% url 'updateAction' blog.id %}" method="POST">
+    <form action="{% url 'community:updateAction' blog.id %}" method="POST">
         {% csrf_token %}
         <div style="text-align: center;">
         <p>제목 : <input type="text" name="title" value="{{blog.title}}"/></p>
-        <p>글쓴이 : <input type="text" name="writer" value="{{blog.writer}}"/></p>
         <p><textarea name="content" style="resize: none; width: 800px; height: 400px;">{{blog.content}}</textarea></p>
         <p><input type="submit" value="작성"/></p>
     </div>

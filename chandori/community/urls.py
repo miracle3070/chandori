@@ -14,4 +14,5 @@ urlpatterns = [
     path('update/<str:id>', community.views.update, name="update"),
     path('updateAction/<str:id>', community.views.updateAction, name="updateAction"),
     path('delete/<str:id>', community.views.delete, name="delete"),
+    path('my_content', community.views.my_content, name="my_content"),
 ]

@@ -10,14 +10,14 @@
     </style>
 </head>
 <body>
-    <form action="{%url 'create' %}" method="POST">
+    <form action="{%url 'community:create' %}" method="POST">
         {% csrf_token %}
         <div style="text-align: center;">
         <!-- <h3>제목 : <input type="text" name="title" style="width: 670px;"/></h3>
         <h3>글쓴이 : <input type="text" name="writer" style="width: 400px;"/> 게시판 선택 : <input value="{{blog.category}}"/></h3>
         <br>
         <p><textarea name="content" style="resize: none; width: 800px; height: 400px;">내용을 입력하세요.</textarea></p> -->
-        {{ form.as_p}}
+        {{ form.as_p }}
         <p><input type="submit" value="작성"/></p>
     </div>
     </form>

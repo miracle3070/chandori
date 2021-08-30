@@ -1,41 +1,63 @@
-<!DOCTYPE html>
 {% load static %}
+
+{% include 'header.html' %}
+
+{% block content %}
+
+<nav style="top: 100px;">
+    <a href="{% url 'accounting:home' %}">지출통계</a>
+    <a href="{% url 'accounting:field' %}">가계부 입력</a>
+    <a href="{% url 'community:community' %}" class="is-current">커뮤니티</a>
+    <a href="{% url 'account:edit' %}" >정보 수정</a>
+    <div class="nav-underline"></div>
+</nav>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'community/css/table.css' %}"/>
     <title>Document</title>
 </head>
 <body>
-    <div id="big_box">
-        <div id="side_left"><br>
-            <div id="side_content">
-            <button id="make_content" type="button" onclick="location.href='/write/'">글 작성하기</button>
+    <div class="main_content">
+        <div id="big_box">
+            <div id="side_left"><br>
+                <div id="side_content">
+                    <button id="make_content" type="button" onclick="location.href='{% url "community:write" %}'">글 작성하기</button>
+                </div>
+                <br><br> <br><a href="/community/">커뮤니티</a><br><br>
+                <div id="side_content">· <a href="{% url 'community:inform' %}">정보게시판</a><br></div><br>
+                <div id="side_content">· <a href="{% url 'community:question' %}">질문게시판</a><br></div><br>
+                <hr><br>
+                <div id="side_content"> <a href="{% url 'community:my_content' %}">내가 작성한 글</a><br></div><br>
             </div>
-            <br><br> <br><a href="/">커뮤니티</a><br><br>
-            <div id="side_content">· <a href="/inform">정보게시판</a><br></div><br>
-            <div id="side_content">· <a href="/question">질문게시판</a><br></div><br>
-            <hr><br>
-            <div id="side_content"> <a href>내가 작성한 글</a><br></div><br>
-        </div>
-        <div id="comm_main">
-        <div id="content_detail"><br>
-            {{blog.title}}</p>
-                <p style="font-size: 0.6em;">{{blog.writer}}<br>{{blog.created_date}}</p>
-                <p style="font-size: 0.6em; text-align: right;">
-                    <a href="{% url 'update' blog.id %}">수정</a> <a href="{% url 'delete' blog.id %}">삭제</a></p>
-                <hr>
-                <br>
-                {{blog.content}}<br><br><br><br><br><hr>
-                <p style="text-align: center; font-size: 0.6em;"><button>추천</button>    <button>비추천</button></p>
-        </div></div>
-        <div id="comm_main">
-            <div id="content_detail">
-                <p style="font-size: 0.7em;">댓글</p> <textarea name="comment" id="" cols="30" rows="10"></textarea>
-                <button>작성</button>
+            <div id="comm_main">
+                <div id="content_detail"><br>
+                    {{blog.title}}</p>
+                    <p style="font-size: 0.6em;">{{blog.writer}}<br>{{blog.created_date}}</p>
+                    <p style="font-size: 0.6em; text-align: right;">
+                        <a href="{% url 'community:update' blog.id %}">수정</a> <a
+                            href="{% url 'community:delete' blog.id %}">삭제</a></p>
+                    <hr>
+                    <br>
+                    {{blog.content}}<br><br><br><br><br>
+                    <hr>
+                    <p style="text-align: center; font-size: 0.6em;"><button>추천</button> <button>비추천</button></p>
+                </div>
+            </div>
+            <div id="comm_main">
+                <div id="content_detail">
+                    <p style="font-size: 0.7em;">댓글</p> <textarea name="comment" id="" cols="30" rows="10"></textarea>
+                    <button>작성</button>
+                </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
+
+{% include 'footer.html' %}
+{% endblock %}

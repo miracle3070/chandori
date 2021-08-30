@@ -1,9 +1,7 @@
 {% load static %}
-
 {% include 'header.html' %}
 
 {% block content %}
-<!DOCTYPE html>
 <nav style="top: 100px;">
     <a href="{% url 'accounting:home' %}">지출통계</a>
     <a href="{% url 'accounting:field' %}">가계부 입력</a>
@@ -11,7 +9,7 @@
     <a href="{% url 'account:edit' %}" >정보 수정</a>
     <div class="nav-underline"></div>
 </nav>
-<br><br>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -19,9 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[짠돌이] 정보게시판</title>
-    <style>
-    </style>
+    <title>[짠돌이] 내가 작성한 글</title>
 </head>
 <body>
     <div class="main_content">
@@ -37,18 +33,21 @@
                 <div class="side_content"> <a href="{% url 'community:my_content' %}">내가 작성한 글</a><br></div><br>
             </div>
             <div id="comm_main">
-                <br>정보게시판<br><br>
+                <br>내가 작성한 글<br><br>
                 {% for blog in blogs %}
-    
-                    <p style="color: black;"><a href="{% url 'community:detail' blog.id %}">{{blog.title}} </a>{{blog.writer}} {{blog.created_date}}</p>
+
+                {% if blog.category == '정보 게시판' %}
+                <p style="color: black;"><a href="{% url 'community:detail' blog.id %}">{{blog.title}} </a>{{blog.category}} {{blog.created_date}}</p>
+                {% else %}
+                <p style="color: black;"><a href="{% url 'community:detail_ques' blog.id %}">{{blog.title}} </a>{{blog.category}} {{blog.created_date}}</p>
+                {% endif %}  
     
                 {% endfor %}
             </div>
-        </div>
     </div>
+    </div>>
 </body>
 </html>
-
 
 {% include 'footer.html' %}
 {% endblock %}
